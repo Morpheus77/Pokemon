@@ -8,6 +8,7 @@
 """
 from system.core.controller import *
 
+
 class Welcome(Controller):
     def __init__(self, action):
         super(Welcome, self).__init__(action)
@@ -35,6 +36,10 @@ class Welcome(Controller):
         # to pass information on to a view it's the same as it was with Flask
         
         # return self.load_view('index.html', messages=messages, user=user)
-        """
-        return self.load_view('index.html')
+        """	
+        return self.load_view('Pokemon.html')
+		
+	def test(self):
+		data = curl(i, 'http://pokeapi.co/api/v1/pokemon/1/')
+		return self.load_view('Pokemon.html',data = data)
 

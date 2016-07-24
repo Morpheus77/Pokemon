@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+	<head>
+	<meta charset="utf-8">
+		<title>
+			PokePage
+		</title>
+		<link rel="stylesheet" type="text/css" href='/css/styles.css'>
+		
+		<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				/*$.get("http://pokeapi.co/api/v1/pokemon/1/",function(data) {
+				console.log(data)
+				$('#PokeBox').append("<img src='http://Pokeapi.co/media/img/1.png'>" );
+				$('#PokeBox').append("<p>"+ data.name + "</p>" );
+				$('#PokeBox').append("<p>"+ data.types[0].name + "</p>" );
+				$('#PokeBox').append("<p>"+ data.types[1].name + "</p>" );
+				$('#PokeBox').append("<p>"+ data.height + "</p>" );
+				$('#PokeBox').append("<p>"+ data.weight + "</p>" );
+				}, "json");
+				
+				$('img').click(function(){
+					$(this).hide(1000);
+					})	
+					//alert("this works!");*/
+				$("img").click(function(){	
+					$(this).toggle(1000);
+					//alert("id is:" + $(this).attr('id'));
+					x = $(this).attr('id')
+					$.get("http://pokeapi.co/api/v1/pokemon/" + $(this).attr('id') + "/",function(data){
+						console.log(data);
+					//alert(x);
+					$('#image_box').html("<img src='http://Pokeapi.co/media/img/" + x + ".png'>" );
+						var data_pop ="";
+						data_pop +="<ul>";						
+						data_pop += "<h4>Name: </h4> ";
+						data_pop += "<li>" + data.name + "</li>";
+						data_pop += "</ul>";
+						$("#data_box").html(data_pop);
+						
+						var data_pop ="";
+						data_pop +="<ul>";						
+						data_pop += "<h4>Type: </h4> ";
+						for(var i = 0; i < data.types.length; i++){
+							data_pop += "<li>" + data.types[i].name + "</li>";
+							}
+						data_pop += "</ul>"
+						$("#data_box2").html(data_pop);
+						
+						var data_pop ="";
+						data_pop +="<ul>";						
+						data_pop += "<h4>Height: </h4> ";
+						data_pop += "<li>" + data.height + "</li>";
+						data_pop += "</ul>";
+						$("#data_box3").html(data_pop);
+						
+						var data_pop ="";
+						data_pop +="<ul>";						
+						data_pop += "<h4>Weight: </h4> ";
+						data_pop += "<li>" + data.weight + "</li>";
+						data_pop += "</ul>"
+						$("#data_box4").html(data_pop);
+						}, "json" );
+					});
+						
+					
+					})		
+		</script>
+	</head>
+	</body> 
+		<div style="float:left; border:2px solid black; display:inline-block; width:800px;">
+			{%for i in range(1,151)%}
+			<img id= "{{i}}" src ="http://Pokeapi.co/media/img/{{i}}.png" >
+			{%endfor%}
+			</div>
+			<!--div id="image_box" style="width:100px; height:100px; border:2px solid black;float:right;">
+				</div-->
+			<div id="PokeBox" style="width:300px; height:725px; border:30px solid red; display:inline-block; float: right; display: relative; position:fixed;">
+				<div id="image_box" style="width:100px; background-image:url('pokeball.png-c200'); height:100px; border:2px solid black;display: inline-block;">
+				</div>
+				<div id="data_box" style="display:block; border: 1px solid green; width:300px;height:100px;">
+				</div>
+				<div id="data_box2" style="display:block; border: 1px solid blue; width:300px;height:100px;">
+				</div>
+				<div id="data_box3" style="display:block; border: 1px solid red; width:300px;height:100px;">
+				</div>
+				<div id="data_box4" style="display:block; border: 1px solid yellow; width:300px;height:100px;">
+				</div>
+				<button id="btn" style="height:50px; width:100px; background: orange; border:5px solid black; border-radius:3px; font-family:cursive; font-size:200% ;vertical-align:center;"> reset</button>
+			</div>
+	</body> 
+</html>
